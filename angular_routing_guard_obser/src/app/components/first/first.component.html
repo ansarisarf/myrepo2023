@@ -1,0 +1,13 @@
+<p>first works!</p>
+<h1>First Component</h1>
+
+<div class="conatiner">
+  <input type="text" class="form-control" style="width: 30%;" [(ngModel)]="data" />
+  <br>
+  <button class="btn btn-outline-success" (click)="updateData()">
+    Change Data
+  </button>
+  <br /><br />
+  Shared Data - {{ sharedData }}
+</div>
+<app-second></app-second>

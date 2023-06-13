@@ -1,0 +1,78 @@
+<p>lazy loading and its syntax in angular</p>
+<pre>Lazy loading is a technique used in Angular to optimize the loading of modules in an application. 
+It allows you to load modules only when they are needed, instead of loading all modules upfront. 
+This can significantly improve the initial loading time of your application.
+
+    To implement lazy loading in Angular, you need to follow these steps:</pre>
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Set up your routes: In your routing configuration file (usually app-routing.module.ts), define your routes using the loadChildren property instead of the component property. The loadChildren property specifies the path to the module to be lazy loaded. For example:</li>
+        <pre style="background-color: black; color:white">const routes: Routes = [
+             path: 'lazy', loadChildren: () => import('./lazy-module/lazy-module.module').then(m => m.LazyModuleModule) },
+            // other routes...
+          ];</pre>
+        <li class="list-group-item">Create a lazy-loaded module: Create a separate module file for the module you want to lazy load. In the example above, the module file is lazy-module.module.ts. This module should be responsible for declaring and exporting the components, services, and other entities specific to that module. For example:</li>
+        <pre style="background-color: black; color:white">@NgModule(.
+            declarations: [LazyComponent],
+            imports: [CommonModule, LazyRoutingModule],
+          .)
+          export class LazyModuleModule ..         
+         ];</pre>
+         <li class="list-group-item">Set up the lazy-loaded module's routing: In the lazy-loaded module, create a routing configuration file (e.g., lazy-routing.module.ts) specific to that module. Define the routes for the components within the lazy-loaded module. For example:</li>
+         <pre style="background-color: black; color:white">const routes: Routes = [
+             path: '', component: LazyComponent },
+            // other routes...
+          ];
+          
+          @NgModule(
+            imports: [RouterModule.forChild(routes)],
+            exports: [RouterModule],
+          )
+          export class LazyRoutingModule 
+        </pre>
+      </ol>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">forRoot</th>
+        <th scope="col">forChild</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Purpose</th>
+        <td>Used to configure and provide services at the root level.</td>
+        <td>Used to provide services within a feature module.</td>
+      </tr>
+      <tr>
+        <th scope="row">Placement</th>
+        <td>Typically used in the root module (AppModule) only.	</td>
+        <td>Used in feature modules that are imported elsewhere.</td>
+      </tr>
+      <tr>
+        <th scope="row">Multiple Calls	</th>
+        <td>Should be called only once in the entire application.	</td>
+        <td>Can be called multiple times within different modules.</td>
+      </tr>
+      <tr>
+        <th scope="row">Provides</th>
+        <td>Registers services, components, directives, etc.</td>
+        <td>Inherits the configuration from the corresponding forRoot call.</td>
+      </tr>
+      <tr>
+        <th scope="row">Injector Hierarchy</th>
+        <td>Uses the root injector.	</td>
+        <td>Uses a child injector, inheriting from the root injector.</td>
+      </tr>
+      <tr>
+        <th scope="row">Routing Configuration</th>
+        <td>Includes the primary routing configuration.</td>
+        <td>Includes additional routing configuration.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The forRoot method is typically called in the root module (AppModule) and sets up services and configurations that are available throughout the entire application. It is responsible for registering services, components, directives, and configuring the primary routing.</p>
+
+   <p>On the other hand, the forChild method is used in feature modules and provides services and configurations specific to those modules. It can be called multiple times in different feature modules, allowing each module to have its own separate configuration. forChild inherits the configuration from the corresponding forRoot call, allowing the child modules to extend or override the root configuration.</p> 
+    
+    <p>By using forRoot and forChild, you can effectively organize and manage your application's services and configurations at different levels of the Angular module hierarchy.</p>

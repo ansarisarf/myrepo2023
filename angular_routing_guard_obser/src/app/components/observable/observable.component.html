@@ -1,0 +1,29 @@
+<p>what is observable in angular?</p>
+
+<p>In Angular, observables are a key concept used for handling asynchronous operations and event-based programming. An observable is a representation of a stream of data or events that can be observed over time. It provides a way to handle data asynchronously, such as responses from HTTP requests or user input events.</p>
+<p>Observables are part of the Reactive Extensions for JavaScript (RxJS) library, which is included with Angular by default. They are used extensively in Angular applications, especially when working with HTTP requests, handling form input, and managing state changes.</p>
+
+<pre>Here are some common use cases for observables in Angular:</pre>
+
+<pre style="background-color: yellow;">
+1.  HTTP Requests: When making HTTP requests in Angular, the HttpClient module returns observables 
+as the result. You can subscribe to these observables to receive the response data 
+when it becomes available.
+
+2.  Event Handling: Observables can be used to handle user interactions, such as button 
+clicks, form input changes, or mouse movements. By subscribing to the observable 
+representing these events, you can react to them and perform the necessary actions.
+
+3.  State Management: Observables are often used in state management libraries 
+like NgRx or Redux, where the state of an application is represented as an observable stream. 
+Components can subscribe to this stream to receive updates whenever the state changes.
+
+4.  Real-time Data: Observables are commonly used in applications that require real-time 
+data updates, such as chat applications or collaborative editing tools. 
+The observable stream can be connected to a data source (e.g., WebSocket) to 
+receive continuous updates.
+
+5.  Animation and Timers: Angular provides features like animations and timers, 
+which can be implemented using observables. You can create observables to emit values 
+over time and use them to control animations or trigger actions at specific intervals.
+</pre>
